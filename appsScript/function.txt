@@ -2,9 +2,8 @@ function myFunction() {
   var mySpleadSheet = SpreadsheetApp.getActiveSpreadsheet();
   var mySheet = {};
   var resJSON =
-UrlFetchApp.fetch("http://gdd-2011-quiz-japan.appspot.com/apps_script/data?param=-8714252170992499759");
+UrlFetchApp.fetch("http://gdd-2011-quiz-japan.appspot.com/apps_script/data?param=xxxx");
   var objRes = eval("(" + resJSON.getContentText() + ")");
-  //Browser.msgBox(objRes);
   var cities = [];
   var cityName = "";
   var cityData = [];
@@ -23,5 +22,4 @@ UrlFetchApp.fetch("http://gdd-2011-quiz-japan.appspot.com/apps_script/data?param
       mySheet.getRange("C"+raw).setValue(cityData[j].usage / cityData[j].capacity * 100 + "%");
     }
   }
-  //Browser.msgBox(cities.join(","))
 }
