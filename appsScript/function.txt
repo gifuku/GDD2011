@@ -1,8 +1,7 @@
 function myFunction() {
   var mySpleadSheet = SpreadsheetApp.getActiveSpreadsheet();
   var mySheet = {};
-  var resJSON =
-UrlFetchApp.fetch("http://gdd-2011-quiz-japan.appspot.com/apps_script/data?param=xxxx");
+  var resJSON = UrlFetchApp.fetch("http://gdd-2011-quiz-japan.appspot.com/apps_script/data?param=xxxx");
   var objRes = eval("(" + resJSON.getContentText() + ")");
   var cities = [];
   var cityName = "";
