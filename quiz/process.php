@@ -27,13 +27,6 @@ function process($inQuestion, $inDepth){
 	return process($temp, $inDepth+1);
 }
 
-function div5($inData, $inDepth){
-	if($inData%5==0){
-		return $inDepth;
-	}
-	return div5(floor($inData/2), $inDepth+1);
-}
-
 
 
 $fp = fopen("./data.txt", "r");
