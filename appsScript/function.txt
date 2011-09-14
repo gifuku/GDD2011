@@ -1,0 +1,27 @@
+function myFunction() {
+  var mySpleadSheet = SpreadsheetApp.getActiveSpreadsheet();
+  var mySheet = {};
+  var resJSON =
+UrlFetchApp.fetch("http://gdd-2011-quiz-japan.appspot.com/apps_script/data?param=-8714252170992499759");
+  var objRes = eval("(" + resJSON.getContentText() + ")");
+  //Browser.msgBox(objRes);
+  var cities = [];
+  var cityName = "";
+  var cityData = [];
+  for(var i=0; i<objRes.length; i++){
+    obj = objRes[i];
+    cities.push(obj.city_name);
+    if(!SpreadsheetApp.getActiveSpreadsheet().getSheetByName(obj.city_name)){
+      mySpleadSheet.insertSheet(obj.city_name);
+    }
+    mySheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(obj.city_name);
+    cityData = obj.data;
+    for(var j=0; j<cityData.length; j++){
+      raw = j+1;
+      mySheet.getRange("A"+raw).setValue(cityData[j].capacity);
+      mySheet.getRange("B"+raw).setValue(cityData[j].usage);
+      mySheet.getRange("C"+raw).setValue(cityData[j].usage / cityData[j].capacity * 100 + "%");
+    }
+  }
+  //Browser.msgBox(cities.join(","))
+}
